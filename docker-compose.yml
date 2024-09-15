@@ -1,0 +1,13 @@
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: on-failure
+    build: .
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis-server
+      - REDIS_PORT=6379
+      - SERVER_PORT=3000
+    ports:
+      - "3000:3000"
